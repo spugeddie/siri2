@@ -220,6 +220,7 @@ def parse_args():
         elif opt in ('--update'):
             update = arg
 
+    '''
     if not gtf or not read or not bam_files or not output or not length or not anchor:
         print "Not enough parameters!"
         print "Program : ", sys.argv[0]
@@ -235,10 +236,11 @@ def parse_args():
         print 'Usage :', sys.argv[0], " --update: update intron attributes based on data"
         print datetime.datetime.now()
         sys.exit()
+        '''
 
-    print 'parsing bam files...'
+    print('parsing bam files...')
     sample_number = bam2count(output, gtf, bam_files, read, lib, length, anchor, thread, bin_size=1000)
-    print 'converting counts to PI'
+    print('converting counts to PI')
     count2fi(gtf, lib, length, anchor, sample_number, output, update)
 
 if __name__ == "__main__":
