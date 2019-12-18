@@ -120,7 +120,7 @@ def parse_bam_file(Total, output, gtf, bam_file, read, lib, length, anchor, bin_
     total_reads = 0
     for reads_index, iters in enumerate(sam_list):
         if reads_index > 0 and reads_index % 100000 == 0:
-            print '...parsing reads {}'.format(reads_index)
+            print('...parsing reads {}'.format(reads_index))
         if iters.get_tag('NH') != 1:
             continue
         if 'D' in iters.cigarstring or 'H' in iters.cigarstring or 'S' in iters.cigarstring or 'I' in iters.cigarstring:
@@ -338,6 +338,7 @@ def parse_args():
         elif opt in ('--Total'):
             Total = arg
 
+    '''
     if not gtf or not read or not bam or not output or not length or not anchor or not Total:
         print "Not enough parameters!"
         print "Program : ", sys.argv[0]
@@ -351,7 +352,7 @@ def parse_args():
         print "Usage :", sys.argv[0], ' --output: intron_id, gene_id,strand,chr,start,end,5SS inclusion counts,5SS skipping counts, 3SS includion counts,3SS skipping counts,skipping counts,intron counts;'
         print "Usage :", sys.argv[0], " --Total: the file store the total uniquely mapped reads."
         print datetime.datetime.now()
-        sys.exit()
+        sys.exit()'''
         
     if not os.path.exists(bam + '.bai'):
         if not bam.endswith('.sam'):
