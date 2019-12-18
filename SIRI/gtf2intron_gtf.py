@@ -155,8 +155,8 @@ def attribute_intron(path, gtf_name, strand, gtf_file_list, bin = 1000):
     exon_file = open("%s/Exon_%s" % (path, gtf_name))
     for line in exon_file:
         sp = line.strip().split("\t")
-        index_s = int(sp[3]) / bin
-        index_e = int(sp[4]) / bin
+        index_s = int(int(sp[3]) / bin)
+        index_e = int(int(sp[4]) / bin)
         exon_strand = sp[6]
         if strand == "unstrand":
             exon_strand = "unstrand"
