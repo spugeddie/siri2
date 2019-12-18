@@ -41,8 +41,8 @@ def get_read_dictionary(gtf_file, lib, bin_size=1000):
             dict_intron_left[(sp[0], int(sp[3]))].append(key)
             dict_intron_right[(sp[0], int(sp[4]))].append(key)
             dict_intron_left_right[(sp[0], int(sp[3]), int(sp[4]))].append(key)
-            index_start = int(int(sp[3]) / bin_size)
-            index_end = int(int(sp[4]) / bin_size)
+            index_start = int(sp[3]) / bin_size
+            index_end = int(sp[4]) / bin_size
             for i in range(index_start, index_end + 1):
                 dict_intron_window[(sp[0], i)].append(key)
     return dict_count, dict_intron_left, dict_intron_right, dict_intron_left_right, dict_intron_window
@@ -102,8 +102,8 @@ def get_exon_gene_dictionary(gtf_file, bin_size=1000):
     for gene in dict_gene2exon:
         for exon_pos in dict_gene2exon[gene]:
             dict_exon2gene[(dict_gene_count[gene][2], exon_pos[0], exon_pos[1])] = gene
-            index_start = int(exon_pos[0] / bin_size)
-            index_end = int(exon_pos[1] / bin_size)
+            index_start = exon_pos[0] / bin_size
+            index_end = exon_pos[1] / bin_size
             for i in range(index_start, index_end + 1):
                 dict_gene_count_windows[(dict_gene_count[gene][2], i)].append(
                     (dict_gene_count[gene][2], exon_pos[0], exon_pos[1]))
@@ -133,7 +133,7 @@ def parse_bam_file(Total, output, gtf, bam_file, read, lib, length, anchor, bin_
                 continue
         total_reads += 1
         if lib != 'unstrand':
-            ss = int(iters.flag) / 16 % 2
+            ss = (iters.flag) / 16 % 2
             if read == 'S' and lib == 'first':
                 if ss == 0:
                     strand = "-"
@@ -338,21 +338,20 @@ def parse_args():
         elif opt in ('--Total'):
             Total = arg
 
-    '''
     if not gtf or not read or not bam or not output or not length or not anchor or not Total:
-        print "Not enough parameters!"
-        print "Program : ", sys.argv[0]
-        print "A python program to count the reads for retained intron events for varities of junction from a series of bam file."
-        print "Usage :", sys.argv[0], " --gtf: the intron gtf file and gtf file seperated by comma;"
-        print "Usage :", sys.argv[0], " --length:the length of reads;"
-        print "Usage :", sys.argv[0], " --anchor:the anchor length of the read;"
-        print "Usage :", sys.argv[0], " --bam: the bam file,multiple bam file seperated by commas;"
-        print "Usage :", sys.argv[0], " --lib: the library type;"
-        print "Usage :", sys.argv[0], " --read: The sequencing strategy of producing reads with choices of P/S;"
-        print "Usage :", sys.argv[0], ' --output: intron_id, gene_id,strand,chr,start,end,5SS inclusion counts,5SS skipping counts, 3SS includion counts,3SS skipping counts,skipping counts,intron counts;'
-        print "Usage :", sys.argv[0], " --Total: the file store the total uniquely mapped reads."
-        print datetime.datetime.now()
-        sys.exit()'''
+        print("Not enough parameters!")
+        print("Program : ", sys.argv[0])
+        print("A python program to count the reads for retained intron events for varities of junction from a series of bam file.")
+        print("Usage :", sys.argv[0], " --gtf: the intron gtf file and gtf file seperated by comma;")
+        print("Usage :", sys.argv[0], " --length:the length of reads;")
+        print("Usage :", sys.argv[0], " --anchor:the anchor length of the read;")
+        print("Usage :", sys.argv[0], " --bam: the bam file,multiple bam file seperated by commas;")
+        print("Usage :", sys.argv[0], " --lib: the library type;")
+        print("Usage :", sys.argv[0], " --read: The sequencing strategy of producing reads with choices of P/S;")
+        print("Usage :", sys.argv[0], ' --output: intron_id, gene_id,strand,chr,start,end,5SS inclusion counts,5SS skipping counts, 3SS includion counts,3SS skipping counts,skipping counts,intron counts;')
+        print("Usage :", sys.argv[0], " --Total: the file store the total uniquely mapped reads.")
+        print(datetime.datetime.now())
+        sys.exit()
         
     if not os.path.exists(bam + '.bai'):
         if not bam.endswith('.sam'):
