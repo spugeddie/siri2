@@ -43,7 +43,7 @@ def get_read_dictionary(gtf_file, lib, bin_size=1000):
             dict_intron_left_right[(sp[0], int(sp[3]), int(sp[4]))].append(key)
             index_start = int(sp[3]) / bin_size
             index_end = int(sp[4]) / bin_size
-            for i in xrange(index_start, index_end + 1):
+            for i in range(index_start, index_end + 1):
                 dict_intron_window[(sp[0], i)].append(key)
     return dict_count, dict_intron_left, dict_intron_right, dict_intron_left_right, dict_intron_window
 
@@ -180,7 +180,7 @@ def parse_bam_file(Total, output, gtf, bam_file, read, lib, length, anchor, bin_
                     elif strand in dict_gene_count[dict_exon2gene[key]][1]:
                         dict_gene_count[dict_exon2gene[key]][0] += 1
         if len(match_split) == 2:
-            for pos in xrange(reads_start_position + 1 + anchor,
+            for pos in range(reads_start_position + 1 + anchor,
                               reads_start_position + 1 + int(match_split[0]) - anchor + 1):
                 if (chrom, pos) in dict_intron_left:
                     for key in dict_intron_left[(chrom, pos)]:
@@ -190,7 +190,7 @@ def parse_bam_file(Total, output, gtf, bam_file, read, lib, length, anchor, bin_
                         elif strand in dict_count[key][7]:
                             dict_count[key][0] += 1
                             continue
-            for pos in xrange(reads_start_position + 1 + anchor - 1,
+            for pos in range(reads_start_position + 1 + anchor - 1,
                               reads_start_position + 1 + int(match_split[0]) - anchor):
                 if (chrom, pos) in dict_intron_right:
                     for key in dict_intron_right[(chrom, pos)]:
@@ -206,7 +206,7 @@ def parse_bam_file(Total, output, gtf, bam_file, read, lib, length, anchor, bin_
                         elif strand in dict_count[key][7]:
                             dict_count[key][5] += 1
         start_position = reads_start_position + 1
-        for i in xrange(0, junction_split_length - 1):
+        for i in range(0, junction_split_length - 1):
             n1 = int(junction_split[i].split('M')[0])
             n2 = int(junction_split[i].split('M')[1])
             n3 = int(junction_split[i + 1].split('M')[0])
@@ -251,14 +251,14 @@ def parse_bam_file(Total, output, gtf, bam_file, read, lib, length, anchor, bin_
                             dict_count[key][4] += 1
             if n1 - anchor + 1 > anchor:
                 _start = start_position
-                for pos in xrange(_start + anchor, _start + n1 - anchor + 1):
+                for pos in range(_start + anchor, _start + n1 - anchor + 1):
                     if (chrom, pos) in dict_intron_left:
                         for key in dict_intron_left[(chrom, pos)]:
                             if lib == 'unstrand':
                                 dict_count[key][0] += 1
                             elif strand in dict_count[key][7]:
                                 dict_count[key][0] += 1
-                for pos in xrange(_start + anchor - 1, _start + n1 - anchor):
+                for pos in range(_start + anchor - 1, _start + n1 - anchor):
                     if (chrom, pos) in dict_intron_right:
                         for key in dict_intron_right[(chrom, pos)]:
                             if lib == 'unstrand':
@@ -267,14 +267,14 @@ def parse_bam_file(Total, output, gtf, bam_file, read, lib, length, anchor, bin_
                                 dict_count[key][2] += 1
             if n3 - anchor + 1 > anchor:
                 _start = start_position + n1 + n2
-                for pos in xrange(_start + anchor, _start + n3 - anchor + 1):
+                for pos in range(_start + anchor, _start + n3 - anchor + 1):
                     if (chrom, pos) in dict_intron_left:
                         for key in dict_intron_left[(chrom, pos)]:
                             if lib == 'unstrand':
                                 dict_count[key][0] += 1
                             elif strand in dict_count[key][7]:
                                 dict_count[key][0] += 1
-                for pos in xrange(_start + anchor - 1, _start + n3 - anchor):
+                for pos in range(_start + anchor - 1, _start + n3 - anchor):
                     if (chrom, pos) in dict_intron_right:
                         for key in dict_intron_right[(chrom, pos)]:
                             if lib == 'unstrand':
