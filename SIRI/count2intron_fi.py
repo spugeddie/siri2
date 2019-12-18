@@ -71,7 +71,7 @@ def bam2count(output, gtf, bam_files, read, lib, length, anchor, thread, bin_siz
         pool.join()
 
     intron_header = dict()
-    for sample_index in xrange(0, sample_number):
+    for sample_index in range(0, sample_number):
         fp = open("%s/count_%s_intron.txt" % (output, sample_index))
         for info in fp:
             sp = info.strip().split("\t")
@@ -103,7 +103,7 @@ def bam2count(output, gtf, bam_files, read, lib, length, anchor, thread, bin_siz
     cmd2 = "paste %s/intron_header " % output
     cmd3 = "paste %s/exon_header " % output
 
-    for sample_index in xrange(0, sample_number):
+    for sample_index in range(0, sample_number):
         cmd = "cut -f 8,9,10,11,12,13 %s/count_%s_intron.txt > %s/intron_%s.val" % (output, sample_index, output, sample_index)
         os.system(cmd)
         cmd = "cut -f 2 %s/count_%s_exon.txt > %s/exon_%s.val" % (output, sample_index, output, sample_index)
