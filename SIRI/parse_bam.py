@@ -133,7 +133,7 @@ def parse_bam_file(Total, output, gtf, bam_file, read, lib, length, anchor, bin_
                 continue
         total_reads += 1
         if lib != 'unstrand':
-            ss = (iters.flag) / 16 % 2
+            ss = int(iters.flag) / 16 % 2
             if read == 'S' and lib == 'first':
                 if ss == 0:
                     strand = "-"
