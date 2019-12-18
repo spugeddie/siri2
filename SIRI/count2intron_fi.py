@@ -75,7 +75,7 @@ def bam2count(output, gtf, bam_files, read, lib, length, anchor, thread, bin_siz
         fp = open("%s/count_%s_intron.txt" % (output, sample_index))
         for info in fp:
             sp = info.strip().split("\t")
-            if start not in intron_header: # change for python3
+            if sp[0] not in intron_header: # change for python3
                 t = sp[3].split(",")
                 if (t[0] == "false"):
                     intron_header[sp[0]][2] = re.sub("true,", "false,", intron_header[sp[0]][2])
