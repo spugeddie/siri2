@@ -80,9 +80,9 @@ def parse_args():
         path = '.'
     if skip_gtf != 'false':
         if os.path.exists(path + '/Intron_attri_' + gtf_name):
-            print 'intron gtf has been generated, skipping...'
+            print('intron gtf has been generated, skipping...')
         else:
-            print 'generating SIRI gtf files'
+            print('generating SIRI gtf files')
             cmd = gtf2intron_gtf_exe + ' --gtf {} --strand {}'.format(gtf, lib)
             os.system(cmd)    
     else:
