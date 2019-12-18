@@ -51,6 +51,7 @@ def parse_args():
         elif opt in ('--skip_gtf'):
             skip_gtf = arg
 
+    '''
     if not gtf or not read or not bam_files or not output or not length or not anchor:
         print "Not enough parameters!"
         print "Program : ", sys.argv[0]
@@ -67,6 +68,7 @@ def parse_args():
         print 'Usage :', sys.argv[0], " --skip_gtf: skipping generating gtfs for intron events"
         print datetime.datetime.now()
         sys.exit()
+        '''
 
     script_dir = os.path.dirname(os.path.realpath(__file__))
     gtf2intron_gtf_exe = 'python {}/../SIRI/gtf2intron_gtf.py'.format(script_dir)
