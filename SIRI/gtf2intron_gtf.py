@@ -202,28 +202,28 @@ def parse_args():
             gtf = arg
         elif opt in '--strand':
             strand = arg
-    if not gtf:
+    '''if not gtf:
         print "Not enough parameters!"
         print "Program : ", sys.argv[0]
         print "A python program to get the clean intron  from given intron gtf file."
         print "Usage :", sys.argv[0], " --gtf: The gtf file;"
         print "Usage :", sys.argv[0], " --strand: The library type."
         print datetime.datetime.now()
-        sys.exit()
+        sys.exit()'''
 
     path, gtf_name = os.path.split(gtf)
     if path == '':
         path = '.'
-    print '...generating exon gtf files'
+    print('...generating exon gtf files')
     exon_gtf(path, gtf_name)
-    print '...generating intron gtf files'
+    print('...generating intron gtf files')
     intron_gtf(path, gtf_name)
     gtf_file_list = read_file("%s/Intron_%s" % (path, gtf_name))
-    print '...generating transcript files'
+    print('...generating transcript files')
     transcript_intron(path, strand, gtf_file_list)
-    print '...generating intron annotation files'
+    print('...generating intron annotation files')
     annotated_intron(path, gtf_name, gtf_file_list)
-    print '...generating intron attributes files'
+    print('...generating intron attributes files')
     attribute_intron(path, gtf_name, strand, gtf_file_list)
 
 if __name__=="__main__":
