@@ -47,7 +47,7 @@ def intron_gtf(path, gtf_name):
         elif len(exon_s[transcript_id]) > 1:
             exon_s[transcript_id].sort()
             exon_e[transcript_id].sort()
-            for i in xrange(1, len(exon_s[transcript_id])):
+            for i in range(1, len(exon_s[transcript_id])):
                 if gtf_list[6] == '+':
                     fw.write(
                         "%s\t%s\tintron\t%s\t%s\t.\t%s\t.\tgene_id \"%s\"; gene_name \"%s\"; transcript_id \"%s\"; intron_number \"%s\"; total_intron_number \"%s\"; exon_1 \"%s_%s\"; exon_2 \"%s_%s\";\n" % (
@@ -99,7 +99,7 @@ def annotated_intron(path, gtf_name, gtf_file_list):
         intron[key] = ["false", gtf_list[0], gtf_list[3], gtf_list[4], gene_id, gtf_list[6]]
         index_s = exon1 / bin
         index_e = exon2 / bin
-        for i in xrange(index_s, index_e + 1):
+        for i in range(index_s, index_e + 1):
             pos[(gtf_list[0], gtf_list[6], i)].append(key)
     exon_file = open("%s/Exon_%s" % (path, gtf_name))
     for line in exon_file:
@@ -146,10 +146,10 @@ def attribute_intron(path, gtf_name, strand, gtf_file_list, bin = 1000):
         index_s = int(gtf_list[3]) / bin
         index_e = int(gtf_list[4]) / bin
         if strand == 'unstrand':
-            for i in xrange(index_s, index_e + 1):
+            for i in range(index_s, index_e + 1):
                 pos[(gtf_list[0], 'unstrand', i)].append(key)
         else:
-            for i in xrange(index_s, index_e + 1):
+            for i in range(index_s, index_e + 1):
                 pos[(gtf_list[0], gtf_list[6], i)].append(key)
 
     exon_file = open("%s/Exon_%s" % (path, gtf_name))
