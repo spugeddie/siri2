@@ -23,12 +23,12 @@ def intron_gtf(path, gtf_name):
     exon_s, exon_e = defaultdict(lambda: []), defaultdict(lambda: [])
     parse_line_start = 0
     gtf_file_list = read_file(path + '/' + gtf_name)
-    for i in xrange(0, len(gtf_file_list)):
+    for i in range(0, len(gtf_file_list)):
         if gtf_file_list[i].startswith('#') or gtf_file_list[i].split('\t')[2] != 'exon':
             continue
         parse_line_start = i
         break
-    for i in xrange(parse_line_start, len(gtf_file_list)):
+    for i in range(parse_line_start, len(gtf_file_list)):
         gtf_list = gtf_file_list[i].strip().split('\t')
         if gtf_list[2] != 'exon':
             continue
@@ -37,7 +37,7 @@ def intron_gtf(path, gtf_name):
         exon_e[transcript_id].append(int(gtf_list[4]))
     trans = {}
     fw = open(("%s/Intron_%s" % (path, gtf_name)), "w")
-    for i in xrange(parse_line_start, len(gtf_file_list)):
+    for i in range(parse_line_start, len(gtf_file_list)):
         gtf_list = gtf_file_list[i].strip().split('\t')
         transcript_id = re.sub('.*transcript_id "|\".*', '', gtf_list[8])
         gene_id = re.sub('.*gene_id "|\".*', '', gtf_list[8])
