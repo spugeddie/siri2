@@ -57,7 +57,7 @@ def bam2count(output, gtf, bam_files, read, lib, length, anchor, thread, bin_siz
     bam_files = bam_files.split(',')
     sample_number = len(bam_files)
     run_cmd_list = []
-    for sample_index in xrange(0, sample_number):
+    for sample_index in range(0, sample_number):
         bam = bam_files[sample_index]
         if bam.endswith('.bam') or bam.endswith('.sam'):
             cmd = 'python {}/parse_bam.py --gtf {} --length {} --anchor {} --bam {} -o {}/count_{} --lib {} --read {} --Total {}/Total_{}.txt'.format(
