@@ -90,9 +90,7 @@ def bam2count(output, gtf, bam_files, read, lib, length, anchor, thread, bin_siz
     for line in fp:
         sp = line.strip().split('\t')
         try: fw.write('{}\t{}\n'.format(sp[0], '\t'.join(intron_header[sp[0]])))
-        except KeyError: 
-            if   "_+" in sp[0]:fw.write('{}\t{}\n'.format(sp[0].replace('_+','_-'), '\t'.join(intron_header[sp[0].replace('_+','_-')])))
-            elif "_-" in sp[0]:fw.write('{}\t{}\n'.format(sp[0].replace('_-','_+'), '\t'.join(intron_header[sp[0].replace('_-','_+')])))
+        except KeyError: continue
     fw.close()
     fp.close()
 
